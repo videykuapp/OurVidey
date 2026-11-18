@@ -202,20 +202,24 @@ function VideoPage() {
   useEffect(() => {
     if (!video) return;
 
-    // Monetag OnClick is click-triggered. Load it only on the watch page,
-    // so it cannot trigger from the homepage or upload page.
-    if (document.querySelector('script[data-ourvidey-onclick="12288957"]')) return;
+    // Monetag scripts are intentionally loaded only on the video watch page.
+    // The homepage and upload page do not load any ad scripts.
+    const zones = [
+      { id: "12288913", src: "https://nap5k.com/tag.min.js" },
+      { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
+      { id: "12288957", src: "https://al5sm.com/tag.min.js" }
+    ];
 
-    const script = document.createElement("script");
-    script.dataset.zone = "12288957";
-    script.dataset.ourvideyOnclick = "12288957";
-    script.src = "https://al5sm.com/tag.min.js";
-    script.async = true;
-    document.head.appendChild(script);
+    zones.forEach(({ id: zoneId, src }) => {
+      if (document.querySelector(`script[data-ourvidey-zone="${zoneId}"]`)) return;
 
-    return () => {
-      // Keep the Monetag script active for this page session once loaded.
-    };
+      const script = document.createElement("script");
+      script.dataset.zone = zoneId;
+      script.dataset.ourvideyZone = zoneId;
+      script.src = src;
+      script.async = true;
+      document.head.appendChild(script);
+    });
   }, [video]);
 
   if (error) {
