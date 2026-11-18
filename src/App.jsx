@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "";
-const MONETAG_SMARTLINK = import.meta.env.VITE_MONETAG_SMARTLINK || "";
+const MONETAG_SMARTLINK = "https://uplcm.com/4/12288976";
 const MAX_FILE_SIZE = 100 * 1024 * 1024;
 const ALLOWED_TYPES = ["video/mp4", "video/quicktime", "video/webm"];
 
@@ -44,7 +44,6 @@ function Home() {
           <UploadCloud size={18}/> Upload video
         </Link>
       </section>
-      <MonetagSmartLink />
       <MonetagSmartLink />
     </>
   );
@@ -280,8 +279,6 @@ function VideoPage() {
         </button>
       </div>
 
-      <MonetagSmartLink />
-      <MonetagSmartLink />
     </main>
   );
 }
