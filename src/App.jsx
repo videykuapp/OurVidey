@@ -7,7 +7,6 @@ import {
 } from "lucide-react";
 
 const API_BASE = import.meta.env.VITE_API_BASE || "";
-const MONETAG_SMARTLINK = "https://uplcm.com/4/12288976";
 const MAX_FILE_SIZE = 100 * 1024 * 1024;
 const ALLOWED_TYPES = ["video/mp4", "video/quicktime", "video/webm"];
 
@@ -18,18 +17,6 @@ function Header() {
         OurVidey<span>.</span>
       </Link>
     </header>
-  );
-}
-
-function MonetagSmartLink() {
-  if (!MONETAG_SMARTLINK) return null;
-  return (
-    <div className="ad-slot">
-      <span>ADVERTISEMENT</span>
-      <a href={MONETAG_SMARTLINK} target="_blank" rel="sponsored noopener noreferrer">
-        Visit sponsor
-      </a>
-    </div>
   );
 }
 
@@ -44,7 +31,6 @@ function Home() {
           <UploadCloud size={18}/> Upload video
         </Link>
       </section>
-      <MonetagSmartLink />
     </>
   );
 }
