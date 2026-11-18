@@ -41,6 +41,19 @@ function UploadPage() {
   const [uploadPercent, setUploadPercent] = useState(0);
   const [message, setMessage] = useState("");
 
+  useEffect(() => {
+    // Show the In-Page Push banner only on the upload page.
+    const zoneId = "12288913";
+    if (document.querySelector(`script[data-ourvidey-zone="${zoneId}"]`)) return;
+
+    const script = document.createElement("script");
+    script.dataset.zone = zoneId;
+    script.dataset.ourvideyZone = zoneId;
+    script.src = "https://nap5k.com/tag.min.js";
+    script.async = true;
+    document.head.appendChild(script);
+  }, []);
+
   async function upload(e) {
     e.preventDefault();
 
@@ -203,7 +216,7 @@ function VideoPage() {
     if (!video) return;
 
     // Monetag scripts are intentionally loaded only on the video watch page.
-    // The homepage and upload page do not load any ad scripts.
+    // The homepage and upload page do not load video-page ad scripts.
     const zones = [
       { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
       { id: "12288957", src: "https://al5sm.com/tag.min.js" }
