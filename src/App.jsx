@@ -41,19 +41,6 @@ function UploadPage() {
   const [uploadPercent, setUploadPercent] = useState(0);
   const [message, setMessage] = useState("");
 
-  useEffect(() => {
-    // Show the In-Page Push banner only on the upload page.
-    const zoneId = "12288913";
-    if (document.querySelector(`script[data-ourvidey-zone="${zoneId}"]`)) return;
-
-    const script = document.createElement("script");
-    script.dataset.zone = zoneId;
-    script.dataset.ourvideyZone = zoneId;
-    script.src = "https://nap5k.com/tag.min.js";
-    script.async = true;
-    document.head.appendChild(script);
-  }, []);
-
   async function upload(e) {
     e.preventDefault();
 
