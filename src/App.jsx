@@ -214,6 +214,25 @@ function VideoPage() {
     };
   }, [id]);
 
+  useEffect(() => {
+    if (!video) return;
+
+    // Monetag OnClick is click-triggered. Load it only on the watch page,
+    // so it cannot trigger from the homepage or upload page.
+    if (document.querySelector('script[data-ourvidey-onclick="12288957"]')) return;
+
+    const script = document.createElement("script");
+    script.dataset.zone = "12288957";
+    script.dataset.ourvideyOnclick = "12288957";
+    script.src = "https://al5sm.com/tag.min.js";
+    script.async = true;
+    document.head.appendChild(script);
+
+    return () => {
+      // Keep the Monetag script active for this page session once loaded.
+    };
+  }, [video]);
+
   if (error) {
     return (
       <main className="narrow">
