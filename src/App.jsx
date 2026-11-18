@@ -205,7 +205,6 @@ function VideoPage() {
     // Monetag scripts are intentionally loaded only on the video watch page.
     // The homepage and upload page do not load any ad scripts.
     const zones = [
-      { id: "12288913", src: "https://nap5k.com/tag.min.js" },
       { id: "12289038", src: "https://n6wxm.com/vignette.min.js" },
       { id: "12288957", src: "https://al5sm.com/tag.min.js" }
     ];
